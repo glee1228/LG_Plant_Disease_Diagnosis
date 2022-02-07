@@ -2,7 +2,7 @@ version: '2.3'
 
 services:
   main:
-    container_name: plant-dacon
+    container_name: plant-lg-dacon
     build:
       context: ./
       dockerfile: Dockerfile
