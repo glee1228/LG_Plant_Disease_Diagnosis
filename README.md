@@ -1,5 +1,34 @@
-# Plant-dacon
-Plant Disease Classification on Multi-modal Features in DACON.
+# 농업 환경 변화에 따른 작물 병해 진단 AI 경진대회
+
+### Private score 4th 0.953772
+
+* 주최 : LG AI Research
+* 주관 : DACON
+* https://dacon.io/competitions/official/235870/overview/description
+
+
+
+### Development Environment
+Ubuntu 18.04.5 LTS
+
+### Library Version
+* h5py>=2.10.0
+* numpy>=1.18.1
+* tqdm>=4.43.0
+* albumentations==1.1.0
+* matplotlib==3.5.1
+* opencv-python-headless==4.5.5.62
+* pandas==1.3.5
+* Pillow==9.0.0
+* scikit-image==0.19.1
+* scikit-learn==1.0.2
+* scipy==1.7.3
+* timm==0.5.4
+* torch==1.8.0
+* torch-optimizer==0.3.0
+* torchvision==0.9.0
+* wandb==0.12.9
+
 
 
 ### Directory structure
@@ -30,7 +59,7 @@ Plant Disease Classification on Multi-modal Features in DACON.
 └── docker-compose.yml
 ```
 
-### Docker Container Usage
+### (Recommended) Docker-compose Usage
 1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
 2. Edit `docker-compose.yml`
@@ -46,10 +75,10 @@ Plant Disease Classification on Multi-modal Features in DACON.
     ```
 3. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
     ```
-    # ~/LG_Plant_Disease_Diagnosis
+    # ./LG_Plant_Disease_Diagnosis
     mkdir data
     cd data
-    (Download data to ~/LG_Plant_Disease_Diagnosis/data/)
+    (Download data to ./LG_Plant_Disease_Diagnosis/data/)
     ```
 
 4. Build docker image clearly and create containers
@@ -81,3 +110,28 @@ Plant Disease Classification on Multi-modal Features in DACON.
 
 8. Submit 
 `/workspace/submission_xxx.csv`
+
+
+
+### Jupyter Notebook Usage
+1. `pip install -r requirement.txt`
+
+2. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
+    ```
+    # ./LG_Plant_Disease_Diagnosis
+    mkdir data
+    cd data
+    (Download data to ~/LG_Plant_Disease_Diagnosis/data/)
+    ```
+3. Unzip train, test data
+    ```
+    #./LG_Plant_Disease_Diagnosis/data
+    unzip data.zip
+    unzip train.zip
+    unzip test.zip
+    ```
+4. Train `main.ipynb`
+
+5. Submit 
+`./submission_xxx.csv`
+
