@@ -115,7 +115,12 @@ Ubuntu 18.04.5 LTS
 
 
 ### (Option) Jupyter Notebook Usage
-1. `pip install -r requirement.txt`
+1. Install Library
+    ```
+    pip3 install -r requirement.txt
+    pip3 install jupyter
+    ```
+
 
 2. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
     ```bash
