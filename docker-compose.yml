@@ -8,33 +8,12 @@ services:
       dockerfile: Dockerfile
     runtime: nvidia
     restart: always
-    volumes:
-      - type: volume
-        source: nfs_shared_
-        target: /mldisk/nfs_shared_
-        volume:
-          nocopy: true
-      - type: volume
-        source: nfs_shared
-        target: /mlsun/nfs_shared
-        volume:
-          nocopy: true
-      - "/media/mmlab/hdd:/hdd"
     ports:
       - "9763:22"
       - "9762:6006"
+      - "8888:8888"
+
     ipc: host
     stdin_open: true
     tty: true
 
-volumes:
-  nfs_shared:
-    driver_opts:
-      type: "nfs"
-      o: "addr=mlsun.sogang.ac.kr,nolock,soft,rw"
-      device: ":/volume1/nfs_shared"
-  nfs_shared_:
-    driver_opts:
-      type: "nfs"
-      o: "addr=mldisk2.sogang.ac.kr,nolock,soft,rw"
-      device: ":/volume3/nfs_shared_"
