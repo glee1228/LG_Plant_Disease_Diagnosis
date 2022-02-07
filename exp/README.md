@@ -35,7 +35,7 @@ public LB의 점수는 0.95165, private LB의 점수는 0.95377 입니다.
 * Embedding Vector의 크기는 LSTM : 2048, Image Model : 1024
 * gamma=2.0인 Focal Loss
 * 30 epoch까지 2e-7까지 learning rate가 떨어지는 CosineAnnealingLR 스케줄러를 사용한 Adamw 옵티마이저(lr=1e-4,weigt decay=1e-3)
-* 30 epoch의 5-fold-CV(validation F1-macro Score가 가장 높은 구조을 선택)
+* 30 epoch의 5-fold-CV(validation F1-macro Score가 가장 높은 모델을 선택)
 * AMP를 이용한 학습
 
 
