@@ -74,22 +74,23 @@ Ubuntu 18.04.5 LTS
         stdin_open: true
     ```
 3. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
-    ```
-    # ./LG_Plant_Disease_Diagnosis
+    ```bash
+    #./LG_Plant_Disease_Diagnosis
     mkdir data
     cd data
     (Download data to ./LG_Plant_Disease_Diagnosis/data/)
     ```
 
 4. Build docker image clearly and create containers
-    ```
+    ```bash
+    #./LG_Plant_Disease_Diagnosis
     docker-compose build --no-cache
     docker-compose up -d
     docker attach plant-lg-dacon
     ```
     
 5. Unzip train, test data
-    ```
+    ```bash
     #/workspace/data
     unzip data.zip
     unzip train.zip
@@ -117,14 +118,14 @@ Ubuntu 18.04.5 LTS
 1. `pip install -r requirement.txt`
 
 2. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
-    ```
-    # ./LG_Plant_Disease_Diagnosis
+    ```bash
+    #./LG_Plant_Disease_Diagnosis
     mkdir data
     cd data
-    (Download data to ~/LG_Plant_Disease_Diagnosis/data/)
+    (Download data to ./LG_Plant_Disease_Diagnosis/data/)
     ```
 3. Unzip train, test data
-    ```
+    ```bash
     #./LG_Plant_Disease_Diagnosis/data
     unzip data.zip
     unzip train.zip
