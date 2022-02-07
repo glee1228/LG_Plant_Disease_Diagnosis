@@ -107,4 +107,5 @@
  " 'vit_small_r26_s32_384', 'vit_tiny_patch16_224', 'vit_tiny_patch16_224_in21k', "
  "'vit_tiny_patch16_384', 'vit_tiny_r_s16_p8_224', 'vit_tiny_r_s16_p8_224_in21k', "
  "'vit_tiny_r_s16_p8_384', 'wide_resnet50_2', 'wide_resnet101_2', 'xception',"
- " 'xception41', 'xception65', 'xception71'"
+ " 'xception41', 'xception65', 'xception71',"
+ " 'convnext_large_384_in22ft1k', 'convnext_large_384_in22ft1k', 'convnext_base_384_in22ft1k'"

@@ -20,7 +20,6 @@ import argparse
 from dataset import PlantDACON
 from model import ImageModel, ImageModel2LSTMModel, ArcfaceImageModel
 from loss import FocalLoss, ArcFaceLoss
-from bi_tempered_loss_pytorch import bi_tempered_logistic_loss
 
 import timm
 import torch_optimizer as optim
@@ -170,10 +169,8 @@ def train(model, train_loader, criterion, optimizer, warmup_scheduler, scheduler
                 else:
                     output = model(img)
 
-            if args.loss == 'btl':
-                train_loss = bi_tempered_logistic_loss(output, label, t1=0.8, t2=1.4, label_smoothing=0.06)
-            else:
-                train_loss = criterion(output, label)
+
+            train_loss = criterion(output, label)
 
         if args.amp:
             scaler.scale(train_loss).backward()
@@ -238,10 +235,8 @@ def valid(model, val_loader, criterion, epoch, wandb, args):
         else:
             with torch.no_grad():
                 output = model(img)
-        if args.loss == 'btl':
-            val_loss = bi_tempered_logistic_loss(output, label, t1=0.8, t2=1.4, label_smoothing=0.06)
-        else:
-            val_loss = criterion(output, label)
+
+        val_loss = criterion(output, label)
         val_acc, val_score = accuracy_function(label, output)
         total_val_loss += val_loss
         total_val_acc += val_acc
@@ -357,7 +352,7 @@ def ensemble_5fold_pt(model_name, output_path_list, label_decoder, args):
     submission = pd.read_csv(f'{args.data_path}/sample_submission.csv')
     submission['label'] = ensemble
     csv_name = f'submission_avg_{args.data_split.lower()}_{"_".join(model_name.split("_"))}_ep{args.epochs:03d}_'
-    csv_name +=f'{args.image_size}_{args.optimizer}_lr_{args.learning_rate}_wd_{args.weight_decay}_'
+    csv_name +=f'{args.image_size}_{args.optimizer}'
     csv_name +=f'_aug_{args.aug_ver:03d}_loss_{args.loss}_amp_{args.amp}_csv_{args.environment_feature}.csv'
     submission.to_csv(csv_name, index=False)
 
@@ -416,14 +411,17 @@ def ensemble_5fold(model_name, model_path_list, test_loader, avail_features, lab
     ensemble = np.array([label_decoder[val] for val in ensemble])
     submission = pd.read_csv(f'{args.data_path}/sample_submission.csv')
     submission['label'] = ensemble
-    submission.to_csv(f'submission_avg_ensemble_{model_name}.csv', index=False)
+    csv_name = f'submission_avg_{args.data_split.lower()}_{"_".join(model_name.split("_"))}_ep{args.epochs:03d}_'
+    csv_name +=f'{args.image_size}_{args.optimizer}'
+    csv_name +=f'_aug_{args.aug_ver:03d}_loss_{args.loss}_amp_{args.amp}_csv_{args.environment_feature}.csv'
+    submission.to_csv(csv_name, index=False)
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-dp', '--data_path', type=str, default='./data',
                         help='Data root path.')
-    parser.add_argument('-sp', '--save_path', type=str, default='/mldisk/nfs_shared_/dh/weights/plant-dacon',
+    parser.add_argument('-sp', '--save_path', type=str, default='./weight/plant-lg-dacon',
                         help='Directory where the generated files will be stored')
     parser.add_argument('-c', '--comment', type=str, default=None)
 
@@ -432,9 +430,9 @@ def main():
     parser.add_argument('-we', '--warm_epoch', type=int, default=0,
                         help='Number of warmup epochs to train the DML network. Default: 0')
 
-    parser.add_argument('-bs', '--batch_size', type=int, default=14,
+    parser.add_argument('-bs', '--batch_size', type=int, default=28,
                         help='The size of the image you want to preprocess. '
-                             'Default: 32')
+                             'Default: 28')
     parser.add_argument('-is', '--image_size', type=int, default=384,
                         help='Variables to resize the image. '
                              'Default: 384')
@@ -452,7 +450,7 @@ def main():
 
     # loss configs:
     parser.add_argument('-l', '--loss', type=str, default='focal',
-                        help='Name of loss function. Options: "ce, focal, btl, arcface')
+                        help='Name of loss function. Options: "ce, focal, arcface')
 
     parser.add_argument('-cw', '--class_weights', type=bool, default=False)
 
@@ -498,7 +496,9 @@ def main():
                              'Option : "convnext_large_384_in22ft1k, swin_large_patch4_window12_384_in22k'
                              'arc_convnext_large_384_in22ft1k, arc_swin_large_patch4_window12_384_in22k'
                              'If you want to use arcface loss while learning only the image model, '
-                             'set the "arc_xxx" model and the "arcface" loss function and environment feature to "FALSE".')
+                             'set the "arc_xxx" model and the "arcface" loss function and environment feature to "FALSE".'
+                             'If you want to use focal loss while learning the multi-modal model, ' 
+                             'set the "arc_xxx" model and the "focal" loss function and environment feature to "True".')
 
     parser.add_argument('-dpr', '--drop_path_rate', type=float, default=0.2,
                         help='dropout rate')
@@ -640,8 +640,6 @@ def main():
         criterion = nn.CrossEntropyLoss()
     elif args.loss == 'focal':
         criterion = FocalLoss()
-    elif args.loss == 'btl':
-        criterion = None
     elif args.loss == 'arcface':
         criterion = ArcFaceLoss(criterion=FocalLoss(), weight=class_weights)
         # criterion = ArcFaceLoss(criterion=FocalLoss())

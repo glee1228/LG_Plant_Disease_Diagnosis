@@ -8,10 +8,10 @@ from skimage.color import rgb2lab
 import numpy as np
 import albumentations as albu
 
-train_files = sorted(glob('data/train/*'))
-csv_files = sorted(glob(f'data/train/*/*.csv'))
-test_files = sorted(glob('data/test/*'))
-labelsss = pd.read_csv('data/train.csv')['label']
+train_files = sorted(glob('../data/train/*'))
+csv_files = sorted(glob(f'../data/train/*/*.csv'))
+test_files = sorted(glob('../data/test/*'))
+labelsss = pd.read_csv('../data/train.csv')['label']
 
 # Label Description : Refer to CSV File
 crop = {'1': '딸기', '2': '토마토', '3': '파프리카', '4': '오이', '5': '고추', '6': '시설포도'}

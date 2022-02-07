@@ -16,6 +16,11 @@ class ImageModel(nn.Module):
         # 모델
         if self.model_name == 'resnet50':
             self.encoder = Resnet50(class_n=class_n)
+        elif self.model_name == 'convnext_xlarge_384_in22ft1k':
+            if self.mode == 'train' :
+                self.encoder = timm.models.convnext_xlarge_384_in22ft1k(pretrained=True, drop_path_rate=self.drop_path_rate)
+            else:
+                self.encoder = timm.models.convnext_xlarge_384_in22ft1k(pretrained=True)
         elif self.model_name == 'convnext_large_384_in22ft1k':
             if self.mode == 'train' :
                 self.encoder = timm.models.convnext_large_384_in22ft1k(pretrained=True, drop_path_rate=self.drop_path_rate)
