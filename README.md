@@ -31,13 +31,13 @@ Plant Disease Classification on Multi-modal Features in DACON.
 ```
 
 ### Usage
-1. `git clone https://github.com/glee1228/Plant-dacon.git`
+1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
 2. Edit `docker-compose.yml`
     ```
     services:
       main:
-        container_name: plant-dacon
+        container_name: plant-lg-dacon
         ...
         ports:
           - "{host ssh}:22"
@@ -45,7 +45,12 @@ Plant Disease Classification on Multi-modal Features in DACON.
         stdin_open: true
     ```
 
-3. `docker-compose up -d`
+3. Build docker image clearly and create containers
+    ```
+    docker-compose build --no-cache
+    docker-compose up -d
+    docker attach plant-lg-dacon
+    ```
 
 4. Download data from HDD to server docker container workspace path.
     ```
