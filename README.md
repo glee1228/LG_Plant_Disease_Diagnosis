@@ -28,6 +28,7 @@ Ubuntu 18.04.5 LTS
 * torch-optimizer==0.3.0
 * torchvision==0.9.0
 * wandb==0.12.9
+* easydict==1.9
 
 
 
