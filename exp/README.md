@@ -19,7 +19,7 @@ Kaggle을 참고하여 안정적인 Augmentation 후보를 선별하고 조합�
 결론적으로는 public LB 점수가 더 높았던 End-to-end로 학습한 이미지 모델+LSTM 구조를 채택했습니다. 
 
 #### 최종 제출물은 ConvNext+LSTM 구조의 5-fold 누적 평균을 이용한 Ensemble 입니다.
-
+![figure](https://github.com/glee1228/LG_Plant_Disease_Diagnosis/blob/main/exp/figure.png) 
 public LB의 점수는 0.95165, private LB의 점수는 0.95377 입니다.
 
 나머지 구조는 Public LB를 통해 평가되었습니다.
