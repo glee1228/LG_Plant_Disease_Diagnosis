@@ -114,7 +114,7 @@ Ubuntu 18.04.5 LTS
 
 
 
-### Jupyter Notebook Usage
+### (Option) Jupyter Notebook Usage
 1. `pip install -r requirement.txt`
 
 2. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
