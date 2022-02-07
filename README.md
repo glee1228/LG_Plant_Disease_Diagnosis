@@ -52,28 +52,27 @@ Plant Disease Classification on Multi-modal Features in DACON.
     docker attach plant-lg-dacon
     ```
 
-4. Download data from HDD to server docker container workspace path.
-    ```
-    #/workspace
-    mkdir data
-    cd data
-    cp /mldisk/nfs_shared_/dh/plant_dacon/data.zip data.zip
-    unzip data.zip
-    unzip train.zip
-    unzip test.zip
-    ```
     
-5. (option) Set password and Restart SSH for SFTP connection
+4. Set password and Restart SSH for SFTP connection
     ```bash
     passwd
     /etc/init.d/ssh restart
     ```
     
-6. Train  `baseline.py`
+5. Download data from https://dacon.io/competitions/official/235870/data to container workspace path.
+
+6. Unzip train, test data
+    ```
+    #/workspace
+    unzip data.zip
+    unzip train.zip
+    unzip test.zip
+    ```
+7. Train  `baseline.py`
     ```bash
     #/workspace
     python baseline.py
     ```
 
-7. Submit 
-`{checkpoint directory}/submission.csv`
+8. Submit 
+`/workspace/submission_xxx.csv`
