@@ -30,7 +30,7 @@ Plant Disease Classification on Multi-modal Features in DACON.
 └── docker-compose.yml
 ```
 
-### Usage
+### Docker Container Usage
 1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
 2. Edit `docker-compose.yml`
@@ -44,30 +44,35 @@ Plant Disease Classification on Multi-modal Features in DACON.
         ipc: host
         stdin_open: true
     ```
+3. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
+    ```
+    # ~/LG_Plant_Disease_Diagnosis
+    mkdir data
+    cd data
+    (Transferring data to /LG_Plant_Disease_Diagnosis/data/)
+    ```
 
-3. Build docker image clearly and create containers
+4. Build docker image clearly and create containers
     ```
     docker-compose build --no-cache
     docker-compose up -d
     docker attach plant-lg-dacon
     ```
-
     
-4. Set password and Restart SSH for SFTP connection
-    ```bash
-    passwd
-    /etc/init.d/ssh restart
-    ```
-    
-5. Download data from https://dacon.io/competitions/official/235870/data to container workspace path(/workspace/data).
-
-6. Unzip train, test data
+5. Unzip train, test data
     ```
     #/workspace/data
     unzip data.zip
     unzip train.zip
     unzip test.zip
     ```
+    
+6. (Option) Set password and Restart SSH for SFTP connection
+    ```bash
+    passwd
+    /etc/init.d/ssh restart
+    ```
+    
 7. Train  `baseline.py`
     ```bash
     #/workspace
