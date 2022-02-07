@@ -51,6 +51,7 @@ Ubuntu 18.04.5 LTS
 │   ├── train.csv
 │   └── sample_submission.csv
 │
+├── main.ipynb (실행 코드 - jupyter notebook)
 ├── baseline.py (실행 코드)
 ├── dataset.py (데이터셋 클래스)
 ├── model.py (모델 클래스)
