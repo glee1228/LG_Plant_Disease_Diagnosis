@@ -59,11 +59,11 @@ Plant Disease Classification on Multi-modal Features in DACON.
     /etc/init.d/ssh restart
     ```
     
-5. Download data from https://dacon.io/competitions/official/235870/data to container workspace path.
+5. Download data from https://dacon.io/competitions/official/235870/data to container workspace path(/workspace/data).
 
 6. Unzip train, test data
     ```
-    #/workspace
+    #/workspace/data
     unzip data.zip
     unzip train.zip
     unzip test.zip
