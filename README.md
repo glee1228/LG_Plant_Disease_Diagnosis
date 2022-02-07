@@ -49,7 +49,7 @@ Plant Disease Classification on Multi-modal Features in DACON.
     # ~/LG_Plant_Disease_Diagnosis
     mkdir data
     cd data
-    (Transferring data to /LG_Plant_Disease_Diagnosis/data/)
+    (Download data to ~/LG_Plant_Disease_Diagnosis/data/)
     ```
 
 4. Build docker image clearly and create containers
