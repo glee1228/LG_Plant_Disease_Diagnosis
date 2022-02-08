@@ -74,6 +74,8 @@ convnext_xlarge_384_in22ft1k  +LSTM(End-to-end)  |	5-fold  |	Flip & SSR & CLAHE 
 최종 제출 예정이었던 구조(swin_large_transformer+LSTM)의 public LB의 점수가 0.95276(private LB : 0.95723)으로 가장 높았지만 도커 컨테이너의 가중치 파일을 로컬 서버로 deployment하는 과정에서 학습한 가중치 파일이 손상되어 그 다음 public LB 점수가 높았던 모델(Convnext_xlarge+LSTM)의 public LB를 최종 제출했습니다.
 
 ***시도했지만 성능 개선이 이루어지지 않아 채택하지 않은 것들***
+
+* Test Time CenterCrop
 * Augmentation : MixUp, CutMix, Transpose, GridDistortion, HueSaturationValue
 * Loss : Bi-tempered Logistic Loss, Arcface Loss(이미지 모델 pretrain)+Focal Loss(시계열 모델 fine-tuning)
 * Scheduler : CosineAnnealingWarmRestarts(69에폭 동안 3순회)
