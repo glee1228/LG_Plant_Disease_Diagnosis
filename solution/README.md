@@ -2,15 +2,17 @@
 
 전반적인 전략은 고도로 조정된 이미지 모델을 취하는 것이었습니다.
 
-이미지만 사용한 resnet50의 경우 seed를 고정한 동일한 fold의 validation 검증 과정에서 f1-macro 기준 0.91, 환경 변수만 사용한 CatBoostClassifier의 경우 0.86였고 이미지 모델이 파프리카 흰가루병의 진행 정도(초기, 중기, 말기)에서 더 변별력 있는 성능을 보여주어 이미지 모델을 Ablation Study를 진행할 주 모델로 선정했습니다.(CatBoostClassifier는 파프리카 흰가루병의 3개 클래스에 한해서 f1-macro 0.33로 분류)
+우선 대부분의 다른 참가자분들과 마찬가지로 1) 이미지 모델을 학습하는데 많은 제출을 사용 2) 새로운 접근 방식 모색을 고려 3) 절제 연구를 지향했습니다.
 
-PlantVillage 벤치마크에서는 병해 분류에 Lightly Augmentation+Small Image Model을 활용한 연구가 주로 진행되고 있음을 확인했지만, 제 실험의 경우 Heavily Augmentation+Large Image Model이 상당한 성능 향상을 가져왔습니다.
+* 이미지만 사용한 resnet50의 경우 seed를 고정한 동일한 fold의 validation 검증 과정에서 f1-macro 기준 0.91, 환경 변수만 사용한 CatBoostClassifier의 경우 0.86였고 이미지 모델이 파프리카 흰가루병의 진행 정도(초기, 중기, 말기)에서 더 변별력 있는 성능을 보여주어 이미지 모델을 Ablation Study를 진행할 주 모델로 선정했습니다.(CatBoostClassifier는 파프리카 흰가루병의 3개 클래스에 한해서 f1-macro 0.33으로 분류)
 
-Kaggle을 참고하여 안정적인 Augmentation 후보를 선별하고 조합을 구성했습니다. Augmentation의 조합을 Wandb Tool을 이용해 이미지 모델의 Cross Validation 성능으로 비교적 좋은 Augmentation 조합을 제출하여 public LB 점수를 평가하였습니다.
+* PlantVillage 벤치마크에서는 병해 분류에 Lightly Augmentation+Small Image Model을 활용한 연구가 주로 진행되고 있음을 확인했지만, 제 실험의 경우 Heavily Augmentation+Large Image Model이 상당한 성능 향상을 가져왔습니다.
+
+* Kaggle을 참고하여 작물 병해 관련 데이터에서 높은 성능을 보이는 Augmentation 요소 후보를 선별하고 조합을 구성했습니다. Augmentation의 조합을 Wandb Tool을 이용해 이미지 모델의 Cross Validation 성능으로 비교적 좋은 Augmentation 조합을 제출하여 public LB 점수를 평가하였습니다.
 
 동시에 ImageNet 벤치마크에서 크기와 성능의 trade-off를 고려하여 이미지 모델을 선별하여 훈련을 시도했습니다.(regnety_040, efficientnet_b7_ns, efficientnetv2, swin_base_transformer,swin_large_transformer, beit_large, convnext_large, convnext_xlarge)
 
-6천장의 작물의 Train 데이터를 학습해 한 번도 본 적 없는 훨씬 많은 양의 작물의 Test 데이터를 분류해야하는 Task가 Face Recognition Task와 비슷하다고 생각해 Face Recognition과 Landmark Recognition에 많이 사용되는 Angular Margin을 이용한 학습을 시도했습니다.
+6천장의 작물의 Train 데이터를 학습해 한 번도 본 적 없는 훨씬 많은 양의 작물의 Test 데이터를 분류해야하는 Task가 Open-set Face Recognition Task와 비슷하다고 생각해 Face Recognition과 Landmark Recognition에 많이 사용되는 Angular Margin을 이용한 학습을 시도했습니다.
 
 캐글의 Cassava Classification 1등 솔루션에서 채택한 Swin-transformer+Bi-tempered-Loss보다 Swin-Transformer+Arcface-Loss가 효과적으로 작물 병해 이미지를 Discriminative한 feature space로 매핑하는 것을 public LB를 통해 잠정적으로 알 수 있었습니다.
 
