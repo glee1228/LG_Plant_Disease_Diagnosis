@@ -1,4 +1,11 @@
-## 솔루션 
+솔루션 개요
+===========
+우선 대부분의 다른 참가자분들과 마찬가지로 1) 이미지 모델을 학습하는데 많은 제출을 사용 2) 새로운 접근 방식 모색을 고려 3) 절제 연구를 지향했습니다.
+
+* PlantVillage 벤치마크에서는 병해 분류에 Lightly Augmentation+Small Scale Image Model을 활용한 연구가 주로 진행되고 있음을 확인했지만, 제 실험의 경우 Heavily Augmentation+Large Scale Image Model이 상당한 성능 향상을 가져왔습니다.
+* Kaggle을 참고하여 작물 병해 관련 데이터에서 높은 성능을 보이는 Augmentation 요소 후보를 선별하고 조합을 구성했습니다. Augmentation의 조합을 Wandb Tool을 이용해 이미지 모델의 Cross Validation 성능으로 비교적 좋은 Augmentation 조합을 제출하여 public LB 점수를 평가하였습니다.
+* 얼마 전 발표된 Facebook AI Research와 UC Berkeley에서 공동 연구를 통해 낸 "A ConvNet for the 2020s"이라는 논문의 ConvNext를 이미지 백본 모델로 사용했습니다. 
+
 
 전반적인 전략은 고도로 조정된 이미지 모델을 취하는 것이었습니다.
 
