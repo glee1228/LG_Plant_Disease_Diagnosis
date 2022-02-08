@@ -128,6 +128,28 @@
 
 <br>
 
+## Inference(Using Single-GPU)
+1. edit single_gpu_inference.py 
+
+Enter the paths of 5 models as a string in the model_path_list list.(line192)
+
+    ``` 
+    model_path_list = [model path 1..,
+                       model path 2..,
+                       model path 3..,
+                       model path 4..,
+                       model path 5..]
+    
+    ```
+
+2. inference using single GPU
+    ```bash
+    #/workspace 
+    python single_gpu_inference.py
+    ```
+
+
+
 ### Development Environment
 Ubuntu 18.04.5 LTS
 
