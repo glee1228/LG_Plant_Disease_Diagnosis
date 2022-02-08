@@ -6,6 +6,36 @@
 * 주관 : DACON
 * https://dacon.io/competitions/official/235870/overview/description
 
+### Directory Structure
+```
+/workspace
+├── data
+│   ├── train
+│   │    ├── 10027
+│   │         ├── 10027.csv
+│   │         ├── 10027.jpg
+│   │         └── 10027.json
+│   │    ├── ...
+│   │    └── 67678
+│   ├── test
+│   │    ├── 10000
+│   │    ├── ...
+│   │    └── 67677
+│   │    
+│   ├── train.csv
+│   └── sample_submission.csv
+│
+├── main.ipynb (실행 코드 - jupyter notebook)
+├── baseline.py (실행 코드)
+├── dataset.py (데이터셋 클래스)
+├── model.py (모델 클래스)
+├── loss.py (손실함수 클래스)
+├── image_model_list.txt (참고 : 사용 가능한 이미지 모델 이름)
+├── requirement.txt
+├── Dockerfile   
+└── docker-compose.yml
+```
+
 
 ## Jupyter Notebook Usage
 1. Install Library
@@ -111,36 +141,6 @@ Ubuntu 18.04.5 LTS
 * easydict==1.9
 
 
-
-### Directory Structure
-```
-/workspace
-├── data
-│   ├── train
-│   │    ├── 10027
-│   │         ├── 10027.csv
-│   │         ├── 10027.jpg
-│   │         └── 10027.json
-│   │    ├── ...
-│   │    └── 67678
-│   ├── test
-│   │    ├── 10000
-│   │    ├── ...
-│   │    └── 67677
-│   │    
-│   ├── train.csv
-│   └── sample_submission.csv
-│
-├── main.ipynb (실행 코드 - jupyter notebook)
-├── baseline.py (실행 코드)
-├── dataset.py (데이터셋 클래스)
-├── model.py (모델 클래스)
-├── loss.py (손실함수 클래스)
-├── image_model_list.txt (참고 : 사용 가능한 이미지 모델 이름)
-├── requirement.txt
-├── Dockerfile   
-└── docker-compose.yml
-```
 
 
 
