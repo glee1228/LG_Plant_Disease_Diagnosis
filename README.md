@@ -6,31 +6,11 @@
 * 주관 : DACON
 * https://dacon.io/competitions/official/235870/overview/description
 
+<br>
 
+### * [솔루션 설명 ](https://github.com/glee1228/LG_Plant_Disease_Diagnosis/tree/main/solution)
 
-### Development Environment
-Ubuntu 18.04.5 LTS
-
-### Library Version
-* h5py>=2.10.0
-* numpy>=1.18.1
-* tqdm>=4.43.0
-* albumentations==1.1.0
-* matplotlib==3.5.1
-* opencv-python-headless==4.5.5.62
-* pandas==1.3.5
-* Pillow==9.0.0
-* scikit-image==0.19.1
-* scikit-learn==1.0.2
-* scipy==1.7.3
-* timm==0.5.4
-* torch==1.8.0
-* torch-optimizer==0.3.0
-* torchvision==0.9.0
-* wandb==0.12.9
-* easydict==1.9
-
-
+<br>
 
 ### Directory Structure
 ```
@@ -62,7 +42,9 @@ Ubuntu 18.04.5 LTS
 └── docker-compose.yml
 ```
 
-### Jupyter Notebook Usage
+<br>
+
+## Jupyter Notebook Usage
 1. Install Library
     ```
     pip3 install -r requirement.txt
@@ -89,7 +71,9 @@ Ubuntu 18.04.5 LTS
 5. Submit 
 `./submission_xxx.csv`
 
-### (Recommended) Docker-compose Usage
+<br>
+
+## (Recommended) Docker-compose Usage
 1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
 2. Edit `docker-compose.yml`
@@ -142,6 +126,31 @@ Ubuntu 18.04.5 LTS
 8. Submit 
 `/workspace/submission_xxx.csv`
 
+<br>
+
+### Development Environment
+Ubuntu 18.04.5 LTS
+
+<br>
+
+### Library Version
+* h5py>=2.10.0
+* numpy>=1.18.1
+* tqdm>=4.43.0
+* albumentations==1.1.0
+* matplotlib==3.5.1
+* opencv-python-headless==4.5.5.62
+* pandas==1.3.5
+* Pillow==9.0.0
+* scikit-image==0.19.1
+* scikit-learn==1.0.2
+* scipy==1.7.3
+* timm==0.5.4
+* torch==1.8.0
+* torch-optimizer==0.3.0
+* torchvision==0.9.0
+* wandb==0.12.9
+* easydict==1.9
 
 
 
