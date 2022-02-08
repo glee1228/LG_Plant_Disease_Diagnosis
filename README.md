@@ -36,6 +36,7 @@
 ├── dataset.py (데이터셋 클래스)
 ├── model.py (모델 클래스)
 ├── loss.py (손실함수 클래스)
+├── single_gpu_inference.py (단일 GPU로 추론하는 코드)
 ├── image_model_list.txt (참고 : 사용 가능한 이미지 모델 이름)
 ├── requirement.txt
 ├── Dockerfile   
