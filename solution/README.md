@@ -79,7 +79,7 @@ convnext_xlarge_384_in22ft1k  +LSTM(End-to-end)  |	5-fold  |	Flip & SSR & CLAHE 
 * Augmentation : MixUp, CutMix, Transpose, GridDistortion, HueSaturationValue
 * Loss : Bi-tempered Logistic Loss, Arcface Loss(이미지 모델 pretrain)+Focal Loss(시계열 모델 fine-tuning)
 * Scheduler : CosineAnnealingWarmRestarts(69에폭 동안 3순회)
-* Architecture : regnety_040, efficientnet_b7_ns, efficientnetv2, swin_base_transformer, beit_large,
+* Architecture : regnety_040, efficientnet_b7_ns, efficientnetv2, swin_base_transformer, beit_large
 * Data :
 1. 파프리카 초기, 중기 말기 클래스 특징을 육안으로 파악하여 3개의 클래스를 동일한 비율로 재 분배 
 2. Ai-hub의 노지작물 데이터 중 고추(Pepper) 흰가루병 이미지도 초기, 중기, 말기로 구성되어 있고 파프리카 흰가루병과 특징 상 비슷하여 3개 클래스(고추 흰가루병 초기,중기,말기)를 추가하여 28개 클래스로 이미지 모델 학습 - 미미한 효과
