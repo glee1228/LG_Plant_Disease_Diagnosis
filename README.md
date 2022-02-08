@@ -62,7 +62,7 @@ Ubuntu 18.04.5 LTS
 └── docker-compose.yml
 ```
 
-### Jupyter Notebook Usage
+## Jupyter Notebook Usage
 1. Install Library
     ```
     pip3 install -r requirement.txt
@@ -89,7 +89,7 @@ Ubuntu 18.04.5 LTS
 5. Submit 
 `./submission_xxx.csv`
 
-### (Recommended) Docker-compose Usage
+## (Recommended) Docker-compose Usage
 1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
 2. Edit `docker-compose.yml`
