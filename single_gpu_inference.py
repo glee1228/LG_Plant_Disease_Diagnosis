@@ -58,7 +58,7 @@ def accuracy_function(real, pred):
 
 
 @torch.no_grad()
-def ensemble_5fold(model_name, model_path_list, test_loader, avail_features, label_encoder,label_decoder, args):
+def ensemble_5fold(model_name, model_path_list, test_loader, avail_features, label_encoder,label_decoder, device, args):
     predict_list = []
     for model_path in model_path_list:
         # Multi-modal Model
@@ -88,14 +88,15 @@ def ensemble_5fold(model_name, model_path_list, test_loader, avail_features, lab
         # breakpoint()
         model.load_state_dict(
             torch.load(model_path)['model_state_dict'])
+        model = model.to(device)
         model.eval()
         batch_iter = tqdm(enumerate(test_loader), f'{model_name}, {"_".join(model_path.split("/")[-3:])} Testing', total=len(test_loader), ncols=150)
         preds = []
 
         for batch, batch_item in batch_iter:
-            img = batch_item['img']['image'].cuda()
+            img = batch_item['img']['image'].to(device)
             if args.environment_feature:
-                csv_feature = batch_item['csv_feature'].cuda()
+                csv_feature = batch_item['csv_feature'].to(device)
                 output = model(img, csv_feature)
             else:
                 output = model(img)
@@ -111,9 +112,9 @@ def ensemble_5fold(model_name, model_path_list, test_loader, avail_features, lab
     ensemble = np.array([label_decoder[val] for val in ensemble])
     submission = pd.read_csv(f'{args.data_path}/sample_submission.csv')
     submission['label'] = ensemble
-    csv_name = f'submission_avg_{args.data_split.lower()}_{"_".join(model_name.split("_"))}_ep{args.epochs:03d}_'
-    csv_name +=f'{args.image_size}_{args.optimizer}'
-    csv_name +=f'_aug_{args.aug_ver:03d}_loss_{args.loss}_amp_{args.amp}_csv_{args.environment_feature}.csv'
+    csv_name = f'submission_avg_{"_".join(model_name.split("_"))}_'
+    csv_name +=f'{args.image_size}'
+    csv_name +=f'_csv_{args.environment_feature}.csv'
     submission.to_csv(csv_name, index=False)
 
 
@@ -125,13 +126,13 @@ def main():
                         help='Directory where the generated files will be stored')
     parser.add_argument('-c', '--comment', type=str, default=None)
 
-    parser.add_argument('-bs', '--batch_size', type=int, default=28,
+    parser.add_argument('-bs', '--batch_size', type=int, default=32,
                         help='The size of the image you want to preprocess. '
                              'Default: 28')
     parser.add_argument('-is', '--image_size', type=int, default=384,
                         help='Variables to resize the image. '
                              'Default: 384')
-    parser.add_argument('-nw', '--num_workers', type=int, default=16,
+    parser.add_argument('-nw', '--num_workers', type=int, default=24,
                         help='Number of workers of dataloader')
 
 
@@ -181,12 +182,18 @@ def main():
     args = parser.parse_args()
     args.cuda = torch.cuda.is_available()
 
+    device = torch.device("cuda:0")
 
     # Data Path
     csv_files = sorted(glob(f'{args.data_path}/train/*/*.csv'))
     test_data = sorted(glob(f'{args.data_path}/test/*'))
 
 
+    model_path_list = ['/workspace/plant-dacon-final-weight/20220203_201640/ckpts/ckpt_epoch_028_fold_0.pt',
+                       '/workspace/plant-dacon-final-weight/20220203_222958/ckpts/ckpt_epoch_016_fold_1.pt',
+                       '/workspace/plant-dacon-final-weight/20220204_004735/ckpts/ckpt_epoch_019_fold_2.pt',
+                       '/workspace/plant-dacon-final-weight/20220204_030152/ckpts/ckpt_epoch_023_fold_3.pt',
+                       '/workspace/plant-dacon-final-weight/20220204_051705/ckpts/ckpt_epoch_019_fold_4.pt']
 
     # Available CSV feature for Training and Testing
     if args.environment_feature:
@@ -231,16 +238,11 @@ def main():
     # Ensemble Inference & Save Result
     test_dataset = globals()[args.dataset](args.image_size, test_data, csv_files, avail_features, label_description, mode='test')
 
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size*8,
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size*4,
                                               num_workers=args.num_workers, shuffle=False)
 
-    model_path_list = ['/workspace/weights/plant-dacon/20220204/201544/ckpts/ckpt_epoch_024_fold_0.pt',
-                       '/workspace/weights/plant-dacon/20220204/225438/ckpts/ckpt_epoch_029_fold_1.pt',
-                       '/workspace/weights/plant-dacon/20220205/013444/ckpts/ckpt_epoch_017_fold_2.pt',
-                       '/workspace/weights/plant-dacon/20220205/041456/ckpts/ckpt_epoch_020_fold_3.pt',
-                       '/workspace/weights/plant-dacon/20220205/065515/ckpts/ckpt_epoch_023_fold_4.pt']
 
-    ensemble_5fold(args.model, model_path_list, test_loader, avail_features, label_encoder, label_decoder, args)
+    ensemble_5fold(args.model, model_path_list, test_loader, avail_features, label_encoder, label_decoder, device, args)
 
 
 if __name__ == '__main__':

@@ -2,7 +2,8 @@ data/
 .git
 __pycache__/
 .idea/
-
+plant-dacon-final-weight/*
+plant-dacon-final-weight.egg
 
 
 # Byte-compiled / optimized / DLL files
