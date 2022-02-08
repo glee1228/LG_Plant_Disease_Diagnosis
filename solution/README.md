@@ -14,7 +14,7 @@
 
 6천장의 작물의 Train 데이터를 학습해 한 번도 본 적 없는 훨씬 많은 양의 작물의 Test 데이터를 분류해야하는 Task가 Open-set Face Recognition Task와 비슷하다고 생각해 Face Recognition과 Landmark Recognition에 많이 사용되는 Angular Margin을 이용한 학습을 시도했습니다.
 
-캐글의 Cassava Classification 1위 솔루션에서 채택한 Swin-transformer+Bi-tempered-Loss보다 Swin-Transformer+Arcface-Loss가 효과적으로 작물 병해 이미지를 Discriminative한 feature space로 매핑하는 것을 public LB를 통해 잠정적으로 알 수 있었습니다.
+캐글의 Cassava Classification 1위 솔루션에서 채택한 transformer계열+Bi-tempered-Loss보다 Transformer계열+Arcface-Loss가 제공된 작물 병해 이미지를 효과적으로 Discriminative한 feature space로 매핑하는 것을 public LB를 통해 잠정적으로 알 수 있었습니다.
 
 그래서 이미지 모델을 Arcface Loss를 이용해 Pretrain한 뒤 LSTM만 Fine-tuning하는 방법을 시도했습니다.
 
