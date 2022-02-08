@@ -62,6 +62,33 @@ Ubuntu 18.04.5 LTS
 └── docker-compose.yml
 ```
 
+### Jupyter Notebook Usage
+1. Install Library
+    ```
+    pip3 install -r requirement.txt
+    pip3 install jupyter
+    ```
+
+
+2. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
+    ```bash
+    #./LG_Plant_Disease_Diagnosis
+    mkdir data
+    cd data
+    (Download data to ./LG_Plant_Disease_Diagnosis/data/)
+    ```
+3. Unzip train, test data
+    ```bash
+    #./LG_Plant_Disease_Diagnosis/data
+    unzip data.zip
+    unzip train.zip
+    unzip test.zip
+    ```
+4. Train `main.ipynb`
+
+5. Submit 
+`./submission_xxx.csv`
+
 ### (Recommended) Docker-compose Usage
 1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
@@ -117,32 +144,7 @@ Ubuntu 18.04.5 LTS
 
 
 
-### (Option) Jupyter Notebook Usage
-1. Install Library
-    ```
-    pip3 install -r requirement.txt
-    pip3 install jupyter
-    ```
 
-
-2. Download data.zip from https://dacon.io/competitions/official/235870/data to container workspace data path.
-    ```bash
-    #./LG_Plant_Disease_Diagnosis
-    mkdir data
-    cd data
-    (Download data to ./LG_Plant_Disease_Diagnosis/data/)
-    ```
-3. Unzip train, test data
-    ```bash
-    #./LG_Plant_Disease_Diagnosis/data
-    unzip data.zip
-    unzip train.zip
-    unzip test.zip
-    ```
-4. Train `main.ipynb`
-
-5. Submit 
-`./submission_xxx.csv`
 
 
 
