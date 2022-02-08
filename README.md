@@ -72,6 +72,7 @@
 `./submission_xxx.csv`
 
 <br>
+
 ## (Recommended) Docker-compose Usage
 1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
@@ -125,9 +126,12 @@
 8. Submit 
 `/workspace/submission_xxx.csv`
 
+<br>
 
 ### Development Environment
 Ubuntu 18.04.5 LTS
+
+<br>
 
 ### Library Version
 * h5py>=2.10.0
