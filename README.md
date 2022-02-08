@@ -6,6 +6,11 @@
 * 주관 : DACON
 * https://dacon.io/competitions/official/235870/overview/description
 
+
+### [솔루션 설명 ](https://github.com/glee1228/LG_Plant_Disease_Diagnosis/tree/main/solution)
+
+
+
 ### Directory Structure
 ```
 /workspace
