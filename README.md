@@ -6,10 +6,11 @@
 * 주관 : DACON
 * https://dacon.io/competitions/official/235870/overview/description
 
+<br>
 
-### [솔루션 설명 ](https://github.com/glee1228/LG_Plant_Disease_Diagnosis/tree/main/solution)
+### * [솔루션 설명 ](https://github.com/glee1228/LG_Plant_Disease_Diagnosis/tree/main/solution)
 
-
+<br>
 
 ### Directory Structure
 ```
@@ -41,6 +42,7 @@
 └── docker-compose.yml
 ```
 
+<br>
 
 ## Jupyter Notebook Usage
 1. Install Library
@@ -69,6 +71,7 @@
 5. Submit 
 `./submission_xxx.csv`
 
+<br>
 ## (Recommended) Docker-compose Usage
 1. `git clone https://github.com/glee1228/LG_Plant_Disease_Diagnosis.git`
 
