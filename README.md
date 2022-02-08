@@ -7,61 +7,6 @@
 * https://dacon.io/competitions/official/235870/overview/description
 
 
-
-### Development Environment
-Ubuntu 18.04.5 LTS
-
-### Library Version
-* h5py>=2.10.0
-* numpy>=1.18.1
-* tqdm>=4.43.0
-* albumentations==1.1.0
-* matplotlib==3.5.1
-* opencv-python-headless==4.5.5.62
-* pandas==1.3.5
-* Pillow==9.0.0
-* scikit-image==0.19.1
-* scikit-learn==1.0.2
-* scipy==1.7.3
-* timm==0.5.4
-* torch==1.8.0
-* torch-optimizer==0.3.0
-* torchvision==0.9.0
-* wandb==0.12.9
-* easydict==1.9
-
-
-
-### Directory Structure
-```
-/workspace
-├── data
-│   ├── train
-│   │    ├── 10027
-│   │         ├── 10027.csv
-│   │         ├── 10027.jpg
-│   │         └── 10027.json
-│   │    ├── ...
-│   │    └── 67678
-│   ├── test
-│   │    ├── 10000
-│   │    ├── ...
-│   │    └── 67677
-│   │    
-│   ├── train.csv
-│   └── sample_submission.csv
-│
-├── main.ipynb (실행 코드 - jupyter notebook)
-├── baseline.py (실행 코드)
-├── dataset.py (데이터셋 클래스)
-├── model.py (모델 클래스)
-├── loss.py (손실함수 클래스)
-├── image_model_list.txt (참고 : 사용 가능한 이미지 모델 이름)
-├── requirement.txt
-├── Dockerfile   
-└── docker-compose.yml
-```
-
 ## Jupyter Notebook Usage
 1. Install Library
     ```
@@ -143,7 +88,59 @@ Ubuntu 18.04.5 LTS
 `/workspace/submission_xxx.csv`
 
 
+### Development Environment
+Ubuntu 18.04.5 LTS
 
+### Library Version
+* h5py>=2.10.0
+* numpy>=1.18.1
+* tqdm>=4.43.0
+* albumentations==1.1.0
+* matplotlib==3.5.1
+* opencv-python-headless==4.5.5.62
+* pandas==1.3.5
+* Pillow==9.0.0
+* scikit-image==0.19.1
+* scikit-learn==1.0.2
+* scipy==1.7.3
+* timm==0.5.4
+* torch==1.8.0
+* torch-optimizer==0.3.0
+* torchvision==0.9.0
+* wandb==0.12.9
+* easydict==1.9
+
+
+
+### Directory Structure
+```
+/workspace
+├── data
+│   ├── train
+│   │    ├── 10027
+│   │         ├── 10027.csv
+│   │         ├── 10027.jpg
+│   │         └── 10027.json
+│   │    ├── ...
+│   │    └── 67678
+│   ├── test
+│   │    ├── 10000
+│   │    ├── ...
+│   │    └── 67677
+│   │    
+│   ├── train.csv
+│   └── sample_submission.csv
+│
+├── main.ipynb (실행 코드 - jupyter notebook)
+├── baseline.py (실행 코드)
+├── dataset.py (데이터셋 클래스)
+├── model.py (모델 클래스)
+├── loss.py (손실함수 클래스)
+├── image_model_list.txt (참고 : 사용 가능한 이미지 모델 이름)
+├── requirement.txt
+├── Dockerfile   
+└── docker-compose.yml
+```
 
 
 
