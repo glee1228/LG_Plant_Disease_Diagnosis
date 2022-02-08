@@ -4,7 +4,7 @@
 
 우선 대부분의 다른 참가자분들과 마찬가지로 1) 이미지 모델을 학습하는데 많은 제출을 사용 2) 새로운 접근 방식 모색 3) 절제 연구를 지향했습니다.
 
-* 이미지만 사용한 resnet50의 경우 seed를 고정한 동일한 fold의 자체 검증에서 f1-macro 기준 0.91, 환경 변수만 사용한 CatBoostClassifier의 경우 0.86였고 이미지 모델이 파프리카 흰가루병의 진행 정도(초기, 중기, 말기)에서 더 변별력 있는 성능을 보여주어 이미지 모델을 Ablation Study를 진행할 주 모델로 선정했습니다.(파프리카 흰가루병 초,중,말기 3개 클래스에 대해 CatClassifier의 환경 변수 분류 성능은 0.33 , Resnet50의 이미지 분류 성능은 0.55 이었습니다.)
+* 이미지만 사용한 resnet50의 경우 seed를 고정한 동일한 fold의 자체 검증에서 f1-macro 기준 0.91, 환경 변수만 사용한 CatBoostClassifier의 경우 0.86였고 이미지 모델이 파프리카 흰가루병의 진행 정도(초기, 중기, 말기)에서 더 변별력 있는 성능을 보여주어 이미지 모델을 Ablation Study를 진행할 주 모델로 선정했습니다.(파프리카 흰가루병 초,중,말기 3개 클래스에 대해 CatBoostClassifier의 환경 변수 분류 성능은 0.33 , Resnet50의 이미지 분류 성능은 0.55 이었습니다.)
 
 * PlantVillage 벤치마크에서는 병해 분류에 Lightly Augmentation+Small Image Model을 활용한 연구가 주로 진행되고 있음을 확인했지만, 제 실험의 경우 Heavily Augmentation+Large Image Model이 상당한 성능 향상을 가져왔습니다.
 
