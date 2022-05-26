@@ -1,9 +1,5 @@
 FROM  pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
 
-# For other versions of the apt update command except version 18.04
-RUN rm /etc/apt/sources.list.d/cuda.list
-RUN rm /etc/apt/sources.list.d/nvidia-ml.list
-
 RUN apt-get update \
     && apt-get -y install \
     apt-utils git vim openssh-server
