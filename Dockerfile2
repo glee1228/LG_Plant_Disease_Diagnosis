@@ -1,0 +1,30 @@
+FROM anibali/pytorch:1.8.1-cuda11.1-ubuntu20.04
+USER root
+RUN sudo su
+
+# Set up time zone.
+ENV TZ=UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+
+RUN apt-get update \
+    && apt-get -y install \
+    apt-utils git vim openssh-server
+ 
+RUN apt-get install -y tzdata
+
+RUN pip install --upgrade pip
+RUN pip install setuptools
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes #prohibit-password/' /etc/ssh/sshd_config
+
+WORKDIR /workspace
+ADD . .
+ENV PYTHONPATH $PYTHONPATH:/workspace
+
+RUN pip install -r requirements.txt
+RUN apt-get -y install libgl1-mesa-glx
+RUN apt-get install unzip
+
+RUN chmod -R a+w /workspace
+RUN /bin/bash
+
+
