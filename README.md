@@ -82,6 +82,9 @@
     services:
       main:
         container_name: plant-lg-dacon
+        build:
+            context: ./
+            dockerfile: Dockerfile {If Ubuntu version is 20.04, Edit it w/ Dockerfile2}
         ...
         ports:
           - "{host ssh}:22"
