@@ -6,10 +6,13 @@
 
 * 데이터 분포가 불균형하고 데이터에 노이즈가 많았습니다. 파프리카 흰가루병은 초기, 중기 구분이 육안으로 뚜렷한 특징이 보이지 않았고 정상에 비해 그 수가 매우 적었습니다. 클래스 별 f1-score의 평균값이 대회 평가 지표였기 때문에 파프리카 흰가루병 초기, 중기 분류 성능은 대회 상위권을 달성하기 위해 매우 중요하다고 생각했습니다.
 
-* 이미지 기본 모델과 환경 데이터 기본 모델 중 이미지 모델을 고도화하면 파프리카 흰가루병 피해 정도 분류에서 월등해 적은 제출 횟수에서 경쟁력 있는 성능을 달성할 수 있을 것으로 생각했습니다.
+* 이미지 기본 모델과 환경 데이터 기본 모델 중 이미지 모델이 파프리카 흰가루병 피해 정도 분류 f1-score 점수가 0.2 더 높았고 학습 파라미터에 따른 성능 차이도 더 컸기 때문에 이미지 모델을 고도화하면 제한된 제출 횟수 내에서 경쟁력 있는 결과를 달성할 수 있을 것으로 예상했습니다.
 
-* k-fold cross validation으로 불균형한 데이터의 검증 신뢰도를 높이면서 focal loss를 활용해 easy negative(예측이 쉬운 클래스)의 영향을 줄이려고 노력했습니다. 
+* k-fold cross validation으로 노이즈가 있는 데이터의 검증 신뢰도를 높이고자 했습니다. 
 
+* focal loss를 활용해서 데이터 불균형 문제를 해결하려고 했습니다.
+
+* 최신 backbone 연구 논문들이 일반화 성능을 높이기 위해 대부분 AdamW 옵티마이저로 학습한다는 걸 알게 됐습니다. AdamW과 Cosine Annealing 스케줄러로 가중치를 업데이트해서 일반화 성능을 높이기 위해 노력했습니다.
 
 ### 이미지 모델 고도화
 
@@ -19,7 +22,7 @@
 
 * 파프리카 흰가루병 데이터가 매우 적었기 때문에 Kaggle 우승자 코드를 참고해서 유의미한 이미지 증강 기법을 최대한 활용해 적은 데이터를 보완하고 크기가 큰 모델 학습이 용이하도록 했습니다. PlantVillage 벤치마크 논문들에서는 병해 분류에 Lightly Augmentation+Small Image Model을 활용한 연구가 주로 진행되고 있음을 확인했지만, 제 실험의 경우 Heavily Augmentation+Large Image Model이 성능 상 더 좋았습니다.
 
-* ImageNet 벤치마크에서 크기와 성능의 trade-off를 고려하여 이미지 모델을 선별하여 훈련을 시도했습니다. 가장 먼저 Resnet, Regnet, Swin-transformer, Convnext를 고려했습니다.  Swin-transformer, Convnext가 patch merging의 효과가 있고 Sota라는 점에서 장점이 있다고 생각해 주 실험 모델이 되었고 성능을 평가한 결과 Swin-transformer가 더 좋긴 했지만 가중치 파일 손상으로 Convnext를 최종 제출했습니다. 
+* ImageNet 벤치마크에서 크기와 성능의 trade-off를 고려하여 이미지 모델을 선별하여 훈련을 시도했습니다. 가장 먼저 Resnet, Regnet, Swin-transformer, Convnext를 고려했습니다.  Swin-transformer, Convnext가 patch merging의 효과로 작물 병해의 국소적인 영역과 전체 이미 Sota라는 점에서 장점이 있다고 생각해 주 실험 모델이 되었고 성능을 평가한 결과 Swin-transformer가 더 좋긴 했지만 가중치 파일 손상으로 Convnext를 최종 제출했습니다. 
 -> 학습을 한번이라도 시도 해봤던 모델들 :regnety_040, efficientnet_b7_ns, efficientnetv2, swin_base_transformer,swin_large_transformer, beit_large, convnext_large, convnext_xlarge
 
 
